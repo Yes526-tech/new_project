@@ -1,50 +1,67 @@
-def add(a, b):
-    return a + b
-def subtract(a, b):
-    return a - b
-def multiply(a, b):
-    return a * b
-def division(a, b):
-    return a / b
+# def add(n1, n2):
+#     return n1 + n2
+# def subtract(n1, n2):
+#     return n1 - n2
+# def multiply(n1, n2):
+#     return n1 * n2
+# def divide(n1, n2):
+#     return n1 / n2
+#
+# operator = {
+# "+": add,
+# "-": subtract,
+# "*": multiply,
+# "/": divide
+# }
+#
+# num1 = int(input("number 1>"))
+# for sembol in operator:
+#     print(sembol)
+# operator_Select = input("which operator:")
+# selected_operator = operator[operator_Select]
+# num2 = int(input("number 2>"))
+# answer = selected_operator(num1, num2)
+# print(f"{num1} {operator_Select} {num2} = {answer}")
+# operator_Select = input("which operator:")
+# selected_operator = operator[operator_Select]
+# num3 = int(input("number 3>"))
+# second_answer = selected_operator(answer, num3)
+# print(f"{answer} {operator_Select} {num3} = {second_answer}")
 
-first_number= float(input("number:"))
-choice = input("+ \n- \n* \n/\nwhich operator:")
-if choice == "+":
-    second_number = float(input("number:"))
-    add_number = add(first_number, second_number)
-    choice_add_number = input("another number:'y' or 'n':\n ")
-    if choice_add_number == "n":
-        print(add_number)
-    else:
-        another_number = float(input("add number:\n"))
-        add(add_number, another_number)
-if choice == "-":
-    second_number = float(input("number:"))
-    subtract_number = subtract(first_number, second_number)
-    choice_add_number = input("another number:'y' or 'n':\n ")
-    if choice_add_number == "n":
-        print(subtract_number)
-    else:
-        another_number = float(input("add number:\n"))
-        subtract(subtract_number, another_number)
+# def factorial(n):
+#     if n == 1:
+#         return 1
+#     else:
+#         return n * factorial(n - 1)
+# print(factorial(1))
 
-if choice == "*":
-    second_number = float(input("number:"))
-    multiply_number = multiply(first_number, second_number)
-    choice_add_number = input("another number:'y' or 'n':\n ")
-    if choice_add_number == "n":
-        print(multiply_number)
-    else:
-        another_number = float(input("add number:\n"))
-        multiply(multiply_number, another_number)
+# list1 = [[1, 2, [[[[3]]]]], [["a"], "b"]]
+#
+#
+# def print_items(arr):
+#     for item in arr:
+#         if type(item) is list:
+#             print_items(item) # recursion
+#         else:
+#             print(item)
+#
+# print_items(list1)
 
-if choice == "/":
-    second_number = float(input("number:"))
-    division_number = division(first_number, second_number)
-    choice_add_number = input("another number:'y' or 'n':\n ")
-    if choice_add_number == "n":
-        print(division_number)
-    else:
-        another_number = float(input("add number:\n"))
-        division(division_number, another_number)
+# 0 1 1 2 3 5 8 13 21 34 55
 
+#
+# def generate_fibonacci(n):
+#     if n <= 1:
+#         return n
+#     else:
+#         return generate_fibonacci(n - 1) + generate_fibonacci(n - 2)
+#
+fibo = [0, 1]
+
+
+def list_fibonacci(n):
+    for i in range(1, n):
+        fibo.append(fibo[i] + fibo[i - 1])
+list_fibonacci(100)
+
+print(fibo)
