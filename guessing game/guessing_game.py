@@ -1,48 +1,54 @@
-import random
-print("Welcome to the Number Guessing Game!")
-selected_num = []
+from random import randint
+
+EASY_LEVEL = 10
+HARD_LEVEL = 5
+
+#Function to check user's guess against actual answer.
+def check_answer(guess, answer, turns):
+  if guess > answer:
+    print("Too high.")
+    return turns - 1
+  elif guess < answer:
+    print("Too low.")
+    return turns - 1
+  else:
+    print(f"You got it! The answer was {answer}.")
+
+def diffulty():
+  level = input("Choose a difficulty. Type 'easy' or 'hard': ")
+  if level == "easy":
+    return EASY_LEVEL
+  else:
+    return HARD_LEVEL
+
+def game():
+  print("Welcome to the Number Guessing Game!")
+
+  print("I'm thinking of a number between 1 and 100.")
+
+  answer = randint(1, 100)
+
+  print(f"Pssst, the correct answer is {answer}")
+
+  turns = diffulty()
+
+  guess = 0
+
+  while guess != answer:
+    print(f"You have {turns} attempts remaining to guess the number.")
+
+    guess = int(input("Make a guess: "))
 
 
-def guess_num(number):
+    turns = check_answer(guess, answer, turns)
 
-    numbers_list = []
+    if turns == 0:
+      print("You've run out of guesses, you lose.")
+      return
 
-    for number in range(1, 101):
-        numbers_list.append(number)
-
-    selected_number = random.choice(numbers_list)
-    selected_num.append(selected_number)
-    print(f"shh number is {selected_number}")
-live = 5
-guessing = True
-guess_num(number=selected_num)
-
-while guessing:
-    guess_number = []
-    guess = int(input("guess number>"))
-    guess_number.append(guess)
-    if guess_number == selected_num:
-        guessing = False
-
-        print("you guessed correct")
-    else:
-        print("you guessed wrong")
-        live -= 1
-        print(f"lives: {live}")
-        hint = input("hint?: 'y' or 'n'> ")
-        if hint == "y":
-            if guess_number > [50] and selected_num < [50]:
-                print("you too high")
-            elif guess_number < [50] and selected_num > [50]:
-                print("you too low")
-            elif guess_number == [50] and selected_num < [50]:
-                print("down")
-            elif guess_number == [50] and selected_num > [50]:
-                print("up")
-
-        if live == 0:
-            print("you out of your lives")
-            guessing = False
+    elif guess != answer:
+      print("Guess again.")
 
 
+game()
 
