@@ -1,6 +1,10 @@
 from data import MENU, resources
+
 profit = 0
+
 working = True
+
+
 def is_resource_sufficient(order_ingredients):
     # {water:50, coffee:18}
     for item in order_ingredients:
@@ -13,6 +17,8 @@ def is_resource_sufficient(order_ingredients):
 def calculate_remain(order_ingredients):
     for item in order_ingredients:
         resources[item] = resources[item] - order_ingredients[item]
+
+
 def progress_coins():
     print("please insert coins.")
     total = int(input("how many 1 lira:"))
@@ -22,6 +28,13 @@ def progress_coins():
     total += int(input("how many 5 kuruş:")) * 0.05
     total += int(input("how many 1 kuruş:")) * 0.01
     return total
+
+
+def buy_action():
+    global profit
+    print(f"you have ₺{user_deposit - drink['cost']} return")
+    profit += drink['cost']
+    calculate_remain(drink["ingredients"])
 
 
 while working:
@@ -37,10 +50,21 @@ while working:
         print(f"you ordered {asking}")
         drink = MENU[asking]
         if is_resource_sufficient(drink["ingredients"]):
-            calculate_remain(drink["ingredients"])
             user_deposit = progress_coins()
             if user_deposit >= drink['cost']:
-                print(f"you have ₺{user_deposit - drink['cost'] } return")
-                profit += drink['cost']
+                buy_action()
             else:
                 print(f"you need to deposit {drink['cost'] - user_deposit} euro more to have {asking}")
+                choice = input("Add to money press continue or cancel to have your money back:").lower()
+                if choice == 'cancel':
+                    print("this is your money.")
+                elif choice == "continue":
+                    while user_deposit < drink['cost']:
+                        user_deposit_new = progress_coins()
+                        user_deposit = user_deposit + user_deposit_new
+                        if user_deposit < drink['cost']:
+                            print(f"you need to deposit {drink['cost'] - user_deposit} euro more to have {asking}")
+                    buy_action()
+
+
+
